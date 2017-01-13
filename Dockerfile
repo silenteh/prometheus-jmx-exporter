@@ -1,5 +1,10 @@
 FROM openjdk:8u111-jdk-alpine
 
+JMX_PORT=9999
+JMX_HOST=kafka
+HTTP_PORT=8080
+JMX_EXPORTER_CONFIG_FILE=kafka.yml
+
 ENV JMX_USER=jmx
 ENV JMX_UID=1234
 
@@ -30,7 +35,6 @@ RUN set -x \
     && chown -R $JMX_UID:0 /opt \    
     && chmod ug+x /opt/entrypoint.sh \
     && chmod ug+x /opt/start-jmx-scraper.sh
-
 
 
 ENTRYPOINT ["/opt/entrypoint.sh"]

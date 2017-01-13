@@ -21,10 +21,17 @@ RUN set -x \
 RUN set -x \    
     && adduser -u "$JMX_UID" -G "$JMX_USER" -D "$JMX_USER"    
 
+# Generate the config
+RUN set -x \
+    && /usr/local/bin/confd -onetime -backend env
+
 # Change folder settings
 RUN set -x \
-    && chown -R $JMX_UID:0 /opt \
-    && chmod ug+x /opt/entrypoint.sh
+    && chown -R $JMX_UID:0 /opt \    
+    && chmod ug+x /opt/entrypoint.sh \
+    && chmod ug+x /opt/start-jmx-scraper.sh
+
+
 
 ENTRYPOINT ["/opt/entrypoint.sh"]
 

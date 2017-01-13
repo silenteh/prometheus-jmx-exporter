@@ -1,10 +1,7 @@
 FROM openjdk:8u111-jre
 
-ENV JMX_PORT=9999
-ENV JMX_HOST=kafka
-ENV HTTP_PORT=8080
-ENV JMX_EXPORTER_CONFIG_FILE=kafka.yml
 
+ENV JMX_EXPORTER_CONFIG_FILE=kafka.yml
 ENV JMX_USER=jmx
 ENV JMX_UID=2378
 
@@ -31,14 +28,15 @@ RUN set -x \
 && adduser --gecos "" --uid "$JMX_UID" --gid "$JMX_UID" --disabled-login "$JMX_USER"
 
 # Generate the config
-RUN set -x \
-    && /usr/local/bin/confd -onetime -backend env
+# RUN set -x \
+#    && /usr/local/bin/confd -onetime -backend env
 
 # Change folder settings
 RUN set -x \
     && chown -R $JMX_UID:0 /opt \    
-    && chmod ug+x /opt/entrypoint.sh \
-    && chmod ug+x /opt/start-jmx-scraper.sh
+    && chmod ug+x /opt/entrypoint.sh
+
+    # && chmod ug+x /opt/start-jmx-scraper.sh
 
 WORKDIR /opt/jmx_prometheus_httpserver/
 

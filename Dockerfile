@@ -23,7 +23,7 @@ RUN set -x \
 
 # Change folder settings
 RUN set -x \
-    && chown -R $JMX_UID:0 /opt/entrypoint.sh \
+    && chown -R $JMX_UID:0 /opt \
     && chmod ug+x /opt/entrypoint.sh
 
 ENTRYPOINT ["/opt/entrypoint.sh"]

@@ -4,7 +4,7 @@ ENV JMX_USER=jmx
 ENV JMX_UID=1234
 
 RUN set -x \
-mkdir -p /opt/jmx_prometheus_httpserver \
+&& mkdir -p /opt/jmx_prometheus_httpserver \
 && wget 'http://central.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_httpserver/0.7/jmx_prometheus_httpserver-0.7.jar' -O /opt/jmx_prometheus_httpserver/jmx_prometheus_httpserver.jar
 
 ADD https://github.com/kelseyhightower/confd/releases/download/v0.11.0/confd-0.11.0-linux-amd64 /usr/local/bin/confd

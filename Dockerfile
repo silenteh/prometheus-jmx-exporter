@@ -1,4 +1,4 @@
-FROM openjdk:8u111-jdk-alpine
+FROM openjdk:8u111-alpine
 
 ENV JMX_PORT=9999
 ENV JMX_HOST=kafka
@@ -43,5 +43,5 @@ WORKDIR /opt/jmx_prometheus_httpserver/
 
 USER $JMX_UID
 
-ENTRYPOINT ["/opt/start-jmx-scraper.sh"]
+CMD ["/opt/start-jmx-scraper.sh"]
 

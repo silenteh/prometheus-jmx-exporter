@@ -1,2 +1,3 @@
 #!/bin/bash
-exec /opt/start-jmx-scraper.sh
+sh -c 'exec /opt/start-jmx-scraper.sh'
+#/opt/start-jmx-scraper.sh

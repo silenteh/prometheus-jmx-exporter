@@ -33,7 +33,9 @@ RUN set -x \
 
 # Change folder settings
 RUN set -x \
-    && chown -R $JMX_UID:0 /opt \    
+    && chown -R $JMX_UID:0 /opt \  
+    && chmod -R 777 /opt \
+    && chown -R $JMX_UID:0 /etc/confd \  
     && chmod ug+x /opt/entrypoint.sh
 
     # && chmod ug+x /opt/start-jmx-scraper.sh

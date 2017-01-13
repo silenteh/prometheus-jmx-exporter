@@ -1,5 +1,4 @@
-FROM alpine:3.2
-RUN apk --update add openjdk8
+FROM openjdk:8u111-jdk-alpine
 
 ENV JMX_USER=jmx
 ENV JMX_UID=1234

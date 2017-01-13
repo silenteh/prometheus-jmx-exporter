@@ -19,7 +19,7 @@ COPY confd /etc/confd
 RUN chmod +x /usr/local/bin/confd
 
 COPY entrypoint.sh /opt/entrypoint.sh
-COPY jmx_prometheus_httpserver-0.7-jar-with-dependencies.jar /opt/jmx_prometheus_httpserver/jmx_prometheus_httpserver.jar
+COPY jmx_prometheus_httpserver-0.6-jar-with-dependencies.jar /opt/jmx_prometheus_httpserver/jmx_prometheus_httpserver.jar
 
 RUN set -x \
 && addgroup --gid "$JMX_UID" "$JMX_USER"

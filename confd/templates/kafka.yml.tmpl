@@ -1,8 +1,6 @@
 lowercaseOutputName: true
 jmxUrl: service:jmx:rmi:///jndi/rmi://{{ getv "/jmx/host" }}:{{ getv "/jmx/port" }}/jmxrmi
 rules:
-lowercaseOutputName: true
-rules:
 - pattern : kafka.cluster<type=(.+), name=(.+), topic=(.+), partition=(.+)><>Value
   name: kafka_cluster_$1_$2
   labels:

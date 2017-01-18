@@ -16,7 +16,7 @@ rules:
 - pattern : kafka.network<type=(.+), name=(.+)><>Value
   name: kafka_network_$1_$2
 - pattern : kafka.network<type=(.+), name=(.+)PerSec, request=(.+)><>(Count|Value)
-  name: kafka_network_$1_$2_total
+  name: kafka_network_$1_$2
   labels:
     request: "$3"
 - pattern : kafka.network<type=(.+), name=(\w+), networkProcessor=(.+)><>Count
@@ -27,11 +27,11 @@ rules:
 - pattern : kafka.network<type=(.+), name=(\w+)><>(Count|Value)
   name: kafka_network_$1_$2
 - pattern : kafka.server<type=(.+), name=(.+)PerSec\w*, topic=(.+)><>(Count|Value)
-  name: kafka_server_$1_$2_total
+  name: kafka_server_$1_$2
   labels:
     topic: "$3"
 - pattern : kafka.server<type=(.+), name=(.+)PerSec\w*><>(Count|Value)
-  name: kafka_server_$1_$2_total
+  name: kafka_server_$1_$2
   type: COUNTER
 - pattern : kafka.server<type=(.+), name=(.+), topic=(.+)><>(Count|Value)
   name: kafka_server_$1_$2
@@ -50,14 +50,14 @@ rules:
   labels:
     clientId: "$2"
 - pattern : kafka.(\w+)<type=(.+), name=(.+)PerSec\w*><>(Count|Value)
-  name: kafka_$1_$2_$3_total
+  name: kafka_$1_$2_$3
 - pattern : kafka.(\w+)<type=(.+), name=(.+)PerSec\w*, topic=(.+)><>(Count|Value)
-  name: kafka_$1_$2_$3_total
+  name: kafka_$1_$2_$3
   labels:
     topic: "$4"
   type: COUNTER
 - pattern : kafka.(\w+)<type=(.+), name=(.+)PerSec\w*, topic=(.+), partition=(.+)><>(Count|Value)
-  name: kafka_$1_$2_$3_total
+  name: kafka_$1_$2_$3
   labels:
     topic: "$4"
     partition: "$5"

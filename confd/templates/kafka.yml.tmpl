@@ -1,6 +1,23 @@
 lowercaseOutputName: true
 jmxUrl: service:jmx:rmi:///jndi/rmi://{{ getv "/jmx/host" }}:{{ getv "/jmx/port" }}/jmxrmi
 rules:
+- pattern : kafka.server<type=BrokerTopicMetrics,name=MessagesInPerSec><>Value
+- pattern : kafka.server<type=BrokerTopicMetrics,name=BytesInPerSec><>Value
+- pattern : kafka.network<type=RequestMetrics,name=RequestsPerSec,request={Produce|FetchConsumer|FetchFollower}><>Value
+- pattern : kafka.server<type=BrokerTopicMetrics,name=BytesOutPerSec><>Value
+- pattern : kafka.log<type=LogFlushStats,name=LogFlushRateAndTimeMs><>Value
+- pattern : kafka.server<type=ReplicaManager,name=UnderReplicatedPartitions><>(Count|Value)
+- pattern : kafka.controller<type=KafkaController,name=ActiveControllerCount><>(Count|Value)
+- pattern : kafka.controller<type=ControllerStats,name=LeaderElectionRateAndTimeMs><>Value
+- pattern : kafka.controller<type=ControllerStats,name=UncleanLeaderElectionsPerSec><>Value
+- pattern : kafka.server<type=ReplicaManager,name=PartitionCount><>(Count|Value)
+- pattern : kafka.server<type=ReplicaManager,name=LeaderCount><>(Count|Value)
+- pattern : kafka.server<type=ReplicaManager,name=IsrShrinksPerSec><>Value
+- pattern : kafka.server<type=ReplicaManager,name=IsrExpandsPerSec><>Value
+- pattern : kafka.server<type=ReplicaFetcherManager,name=MaxLag,clientId=Replica><>Value
+- pattern : kafka.server<type=FetcherLagMetrics,name=ConsumerLag,clientId=([-.\w]+),topic=([-.\w]+),partition=([0-9]+)><>Value
+- pattern : kafka.server<type=DelayedOperationPurgatory,name=PurgatorySize,delayedOperation=Produce><>Value
+- pattern : kafka.consumer<type=ConsumerFetcherManager,name=MaxLag,clientId=([-.\w]+)><>Value
 - pattern : kafka.cluster<type=(.+), name=(.+), topic=(.+), partition=(.+)><>Value
   name: kafka_cluster_$1_$2
   labels:

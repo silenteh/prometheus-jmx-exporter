@@ -3,7 +3,7 @@ jmxUrl: service:jmx:rmi:///jndi/rmi://{{ getv "/jmx/host" }}:{{ getv "/jmx/port"
 rules:
 - pattern : kafka.server<type=BrokerTopicMetrics,name=MessagesInPerSec><>Value
 - pattern : kafka.server<type=BrokerTopicMetrics,name=BytesInPerSec><>Value
-- pattern : kafka.network<type=RequestMetrics,name=RequestsPerSec,request={Produce|FetchConsumer|FetchFollower}><>Value
+- pattern : kafka.network<type=RequestMetrics,name=RequestsPerSec,request=(Produce|FetchConsumer|FetchFollower)><>Value
 - pattern : kafka.server<type=BrokerTopicMetrics,name=BytesOutPerSec><>Value
 - pattern : kafka.log<type=LogFlushStats,name=LogFlushRateAndTimeMs><>Value
 - pattern : kafka.server<type=ReplicaManager,name=UnderReplicatedPartitions><>(Count|Value)
